@@ -31,7 +31,7 @@ cd Simple-Python-Wordle
 2. Run the game:
 
 ```bash
-python3 main.py
+python3 wordle.py
 ```
 
 Requires Python 3.6 or higher.
