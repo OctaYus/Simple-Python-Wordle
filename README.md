@@ -39,7 +39,6 @@ Requires Python 3.6 or higher.
 ## Customization
 
 * You can edit the `self.words_list` in the `Wordle` class to add or replace words.
-* The game checks for full word matches only (no letter-by-letter hints yet).
 
 ## To-Do
 
