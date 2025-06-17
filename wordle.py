@@ -2,10 +2,7 @@ import random
 
 
 class Colors:
-    """Class to define ANSI color codes for terminal output"""
-
     def __init__(self):
-        """Initialize color codes"""
         self.GREEN = "\033[32m"
         self.RED = "\033[31m"
         self.BLUE = "\033[34m"
@@ -24,29 +21,26 @@ class Wordle:
         self.attempts = 6
 
     def check_guess(self, guess):
-        """Check each letter in the guess and return colored result"""
         result = []
         word_letters = list(self.word)
         guess_letters = list(guess)
         
-        # First pass for correct letters in correct position
         for i in range(len(guess_letters)):
             if guess_letters[i] == word_letters[i]:
                 result.append(f"{color.GREEN}{guess_letters[i]}{color.END}")
-                word_letters[i] = None  # Mark this letter as used
+                word_letters[i] = None
             else:
                 result.append(guess_letters[i])
         
-        # Second pass for correct letters in wrong position
         for i in range(len(result)):
             if isinstance(result[i], str) and color.GREEN in result[i]:
-                continue  # Skip already correct letters
+                continue
             letter = guess_letters[i]
             if letter in word_letters:
                 result[i] = f"{color.YELLOW}{letter}{color.END}"
-                word_letters[word_letters.index(letter)] = None  # Mark as used
+                word_letters[word_letters.index(letter)] = None
             else:
-                result[i] = letter  # Keep as default if not found
+                result[i] = letter
         
         return " ".join(result)
 
@@ -68,7 +62,6 @@ class Wordle:
                     print(f"{color.SKY_BLUE}Congratulations! You guessed the word: {word} {color.END}")
                     return
                 
-                # Show letter-by-letter feedback
                 feedback = self.check_guess(user_input)
                 print(f"Feedback: {feedback}")
                 print(f"{color.RED}(-) Try again.{color.END}")
